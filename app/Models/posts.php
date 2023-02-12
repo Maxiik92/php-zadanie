@@ -57,4 +57,14 @@ final class PostsFacade
     }
   }
 
+  public function getPost(string $id)
+  {
+    return $this->database->table('post')->get($id);
+  }
+
+  public function getSelectIds(string $id)
+  {
+    return $this->database->query('SELECT * FROM post_select WHERE post_id=?;', $id);
+  }
+
 }

@@ -13,3 +13,7 @@ Create a form with this functions:<br>
 2. Handle the form and insert data into the Database <br>
 3. Show the saved data and make it possible to update them <br>
 4. Make it in Nette Framework <br>
+
+# DB Query
+
+Database query is in root folder as QUERY.SQL

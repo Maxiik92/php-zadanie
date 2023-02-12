@@ -14,7 +14,6 @@ final class PhpFormPresenter extends Nette\Application\UI\Presenter
   private $facade;
 
   public function __construct(
-    private Nette\Database\Explorer $database,
     PostsFacade $facade,
   )
   {
@@ -35,12 +34,12 @@ final class PhpFormPresenter extends Nette\Application\UI\Presenter
   public function renderEdit($id)
   {
     //get base post from table to be able to convert to array
-    $post = $this->database->table('post')->get($id)->toArray();
+    $post = $this->facade->getPost($id)->toArray();
     //change input formats
     $post['selected_date'] = date_format($post['selected_date'], 'Y-m-d');
     $post['day'] = array_search($post['day'], $this->days);
     //get selectIds and push them in array
-    $selectIds = $this->database->query('SELECT * FROM post_select WHERE post_id=?;', $id);
+    $selectIds = $this->facade->getSelectIds($id);
     foreach ($selectIds as $id) {
       $post['select'][] = $id['select_id'];
     }
@@ -83,18 +82,6 @@ final class PhpFormPresenter extends Nette\Application\UI\Presenter
     $form->onSuccess[] = [$this, 'myFormSucceed'];
 
     return $form;
-  }
-
-  //get options created in db
-  private function getSelectOptions()
-  {
-    $res = $this->database->table('select_option');
-    $output = [];
-
-    foreach ($res as $value) {
-      $output[$value->id] = $value->select_option;
-    }
-    return $output;
   }
 
   public function myFormSucceed(array $data): void
