@@ -1,0 +1,36 @@
+{block content}
+<a class="link" href="{link PhpForm:}">Add New Post </a>
+<h2 class="title">All posts </h2>
+<table>
+<tr class="row">
+<th>ID</th>
+<th>Date</th>
+<th>Favourite Day</th>
+<th>Content</th>
+<th>E-mail</th>
+<th>Favourite Color</th>
+<th>Hobbies</th>
+</tr>
+{foreach $posts as $post}
+  <tr class="row">
+  <td>{$post->id}</td>
+  <td>{$post->selected_date|date:'j. n. Y'}</td>
+  <td>{$post->day}</td>
+  <td>{$post->content}</td>
+  <td>{$post->email}</td>
+  <td>{$post->color}</td>
+  <td>{$post->select_option}</td>
+  <td><button ><a n:href="PhpForm:Edit $post->id"> Update </a></button></td>
+  </tr>
+{/foreach}
+
+</table>
+{/block}
+
+<style>
+th,td { border: 1px solid black; padding:3px; width:auto; }
+a { text-decoration:none; color:black;}
+.link { float:right; font-size:1em; position:relative; right:40px;}
+.title { margin:20px; text-align:center;}
+table { margin: auto;}
+</style>

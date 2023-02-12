@@ -1,0 +1,28 @@
+{block content}
+<div class="form">
+<h4 class='link'>	<a href="{link Posts:Show}" >See all Posts</a></h2>
+<h2 class="title"> Update Post </h2>
+
+{control myForm}
+{foreach $flashes as $flash}
+	<div class="flash {$flash->type}">{$flash->message}</div>
+{/foreach}
+</div>
+{/block}
+
+
+<style>
+	html { color: #666; -webkit-text-stroke: 1px rgba(0,0,0,0); overflow-y: scroll;  height:100%; position:'relative';}
+	body { background: #80898f; color: #333;}
+	.form{ background:white; border-radius:70px; margin:'auto'; position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);width:60%; min-width:500px;box-shadow: 0px 0px 11px 3px rgba(0,0,0,0.66);
+-webkit-box-shadow: 0px 0px 11px 3px rgba(0,0,0,0.66);
+-moz-box-shadow: 0px 0px 11px 3px rgba(0,0,0,0.66);}
+	.link { text-decoration: none; display:flex; justify-content:end; padding-right:50px;}
+	.title { font-weight: 'bold';padding:auto;text-align:center;}
+	.form form { padding:20px;}
+	.form form table { width:100%;}
+	.form form table tbody{ width:100%; padding:auto; margin:0; }
+	.form form table th label { width:100%; text-align: start; padding-left:20px;}
+	.form form table tbody td { max-width:75%;}
+	.form form table th label, .form form table td>* { width:75%; max-width:75%;}
+</style>
